@@ -36,13 +36,11 @@ const Index = () => {
     localStorage.setItem("check", "Added");
     localStorage.setItem("totalMoney", newMon);
     // localStorage.setItem("lsTrs", lsTrs);
-    console.log("credit", number, lsTrs, typeof totalMoney);
   };
 
   // Debit function
   const dbMoney = () => {
     if (!number) return;
-    console.log("debit", typeof totalMoney);
     let newMon = totalMoney - number;
     if (newMon < 0) return setFlag(true);
     setFlag(false);
@@ -64,7 +62,7 @@ const Index = () => {
       <h2>Expense Tracker</h2>
       {flag && <span style={{ color: "red" }}>Insufficent Balance</span>}
       <div className="first-block">
-        <h3>Balance: <span class="h2 text-primary">{totalMoney}</span></h3>
+        <h3>Balance: <span className="h2 text-primary">{totalMoney}</span></h3>
         <input
           type="number"
           min="0"
@@ -73,10 +71,10 @@ const Index = () => {
         />
         <br />
         <div>
-          <button onClick={crMoney} class="btn btn-success m-2">
+          <button onClick={crMoney} className="btn btn-success m-2">
             Add
           </button>
-          <button onClick={dbMoney} class="btn btn-danger m-2">
+          <button onClick={dbMoney} className="btn btn-danger m-2">
             Remove
           </button>
         </div>
@@ -85,14 +83,13 @@ const Index = () => {
         {lsTrs.length > 0 && (
           <h3 style={{ fontWeight: "bolder" }}>Transactions: </h3>
         )}
-        <ul class="list-group">
+        <ul className="list-group">
           {lsTrs.map((item, ind) => {
               let arr = item.split(' ');
-              console.log(arr)
-            return arr[0]=='Credit' ? <li class="list-group-item d-flex justify-content-between align-items-center p-1 mb-2 bg-success  text-white" key={ind}>{arr[0]}
-            <span class="h5" >{arr[1]}</span>
-            </li> : <li class="list-group-item d-flex justify-content-between align-items-center p-1 mb-2 bg-danger  text-white" key={ind}>{arr[0]}
-            <span class="h5">{arr[1]}</span>
+            return arr[0]=='Credit' ? <li className="list-group-item d-flex justify-content-between align-items-center p-1 mb-2 bg-success  text-white" key={ind}>{arr[0]}
+            <span className="h5" >{arr[1]}</span>
+            </li> : <li className="list-group-item d-flex justify-content-between align-items-center p-1 mb-2 bg-danger  text-white" key={ind}>{arr[0]}
+            <span className="h5">{arr[1]}</span>
             </li>;
           })}
         </ul>
