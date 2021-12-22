@@ -54,6 +54,7 @@ const Index = () => {
   //   Handle Input bar
   const handleInput = () => {
     searchInput.current.value = "";
+    setNumber(0)
     searchInput.current.focus();
   };
 
@@ -67,7 +68,7 @@ const Index = () => {
           type="number"
           min="0"
           ref={searchInput}
-          onChange={(e) => setNumber(parseInt(e.target.value))}
+          onChange={(e) => setNumber(parseInt(e.target.value>0 && e.target.value))}
         />
         <br />
         <div>
