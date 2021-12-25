@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+
 import "../../App.css";
 const Index = () => {
   const [number, setNumber] = useState();
@@ -30,7 +31,9 @@ const Index = () => {
     if (!number) return;
     let newMon = totalMoney + number;
     setTotalMoney(newMon);
-    setLsTrs([...lsTrs, `Credit ${number}`]);
+    let dt = new Date();
+    console.log(dt)
+    setLsTrs([...lsTrs, `Credit= ${dt} = ${number}`]);
     setFlag(false);
     handleInput();
     localStorage.setItem("check", "Added");
@@ -45,7 +48,8 @@ const Index = () => {
     if (newMon < 0) return setFlag(true);
     setFlag(false);
     setTotalMoney(newMon);
-    setLsTrs([...lsTrs, `Debit ${number}`]);
+    let dt = new Date();
+    setLsTrs([...lsTrs, `Debit= ${dt} =${number}`]);
     localStorage.setItem("totalMoney", newMon);
     // localStorage.setItem("lsTrs", lsTrs);
     handleInput();
@@ -86,11 +90,11 @@ const Index = () => {
         )}
         <ul className="list-group">
           {lsTrs.map((item, ind) => {
-              let arr = item.split(' ');
+              let arr = item.split('=');
             return arr[0]=='Credit' ? <li className="list-group-item d-flex justify-content-between align-items-center p-1 mb-2 bg-success  text-white" key={ind}>{arr[0]}
-            <span className="h5" >{arr[1]}</span>
+            <span className="h5" >{arr[1]}</span><span className="h5" >{arr[2]}</span>
             </li> : <li className="list-group-item d-flex justify-content-between align-items-center p-1 mb-2 bg-danger  text-white" key={ind}>{arr[0]}
-            <span className="h5">{arr[1]}</span>
+            <span className="h5">{arr[1]}</span><span className="h5" >{arr[2]}</span>
             </li>;
           })}
         </ul>
